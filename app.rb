@@ -8,22 +8,23 @@ class MorseCode
     '--..' => 'Z', '-----' => '0', '.----' => '1', '..---' => '2', '...--' => '3',
     '....-' => '4', '.....' => '5', '-....' => '6', '--...' => '7', '---..' => '8',
     '----.' => '9'
-  }
+  }.freeze
+
   def decode_char(morse_code)
     MORSE_CODE[morse_code]
   end
 
   def decode_word(morse_word)
-    return morse_word.split(' ').map { |char| decode_char(char) }.join
+    morse_word.split.map { |char| decode_char(char) }.join
   end
 
   def decode_msg(morse_msg)
-    return morse_msg.split('   ').map { |word| decode_char(word) }.join(' ')
+    morse_msg.split('   ').map { |word| decode_char(word) }.join(' ')
   end
 end
 
 # Create an instance of the MorseCode class
-morse_code_decoder = MorseCode.new()
+morse_code_decoder = MorseCode.new
 
 # Decode the message from the old bottle
 message_in_bottle = '-- -.--   -. .- -- .'
